@@ -1,0 +1,118 @@
+#######################################
+# Syntax Coloring Map for ggbase
+# (formerly NewSoftSerial)
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ggbase				KEYWORD1
+gg_time_t			KEYWORD1
+GGT_BCDTIME			KEYWORD1
+GGT_TIME			KEYWORD1
+GGT_MBUF			KEYWORD1
+GGT_CMD				KEYWORD1
+GGT_CON				KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# GG_for_Arduino.h
+gg_init				KEYWORD2
+gg_tp1_no			KEYWORD2
+gg_tp2_no			KEYWORD2
+gg_con_baud			KEYWORD2
+
+# ggbase.h
+GG_TP_ON			KEYWORD2
+GG_TP_OFF			KEYWORD2
+GG_DI_ON			KEYWORD2
+GG_DI_OFF			KEYWORD2
+GG_DI_BEGIN			KEYWORD2
+GG_DI_END			KEYWORD2
+
+# gg_uty.h
+gg_GetC				KEYWORD2
+gg_PutC				KEYWORD2
+gg_PutS				KEYWORD2
+gg_PreDetection		KEYWORD2
+gg_sbufmax			KEYWORD2
+gg_asc2int			KEYWORD2
+gg_asc2int_noerr	KEYWORD2
+gg_asc2float		KEYWORD2
+gg_strlen			KEYWORD2
+gg_isdigit			KEYWORD2
+gg_strcpy			KEYWORD2
+gg_strcmp			KEYWORD2
+gg_strcmpx			KEYWORD2
+gg_wccmp			KEYWORD2
+gg_wccmpx			KEYWORD2
+gg_memcpy			KEYWORD2
+gg_memset			KEYWORD2
+gg_toupper			KEYWORD2
+gg_tolower			KEYWORD2
+gg_strcat			KEYWORD2
+gg_mbuf_init		KEYWORD2
+gg_mbuf_put			KEYWORD2
+gg_mbuf_get			KEYWORD2
+gg_mbuf_peek		KEYWORD2
+gg_tim_bcd2dt		KEYWORD2
+gg_tim_dt2bcd		KEYWORD2
+gg_tim_dt2tt		KEYWORD2
+gg_tim_YYMMDD2tt	KEYWORD2
+gg_tim_hhmmss2tt	KEYWORD2
+gg_tim_tt2dt		KEYWORD2
+gg_tim_checkdt		KEYWORD2
+gg_tim_repairdt		KEYWORD2
+gg_tim_tt2week		KEYWORD2
+
+# gg_printf.h
+gg_vxprintf			KEYWORD2
+gg_xprintf			KEYWORD2
+gg_printf			KEYWORD2
+gg_vsprintf			KEYWORD2
+gg_sprintf			KEYWORD2
+gg_xprintDATE		KEYWORD2
+gg_xprintTIME		KEYWORD2
+gg_xprintDT			KEYWORD2
+gg_xprintDTs		KEYWORD2
+gg_printDATE		KEYWORD2
+gg_printTIME		KEYWORD2
+gg_printDT			KEYWORD2
+gg_printDTs			KEYWORD2
+
+# gg_console.h
+GG_CON_CMDADD		KEYWORD2
+GG_CON_CMDMRK		KEYWORD2
+GG_CON				KEYWORD2
+gg_con_MonInit		KEYWORD2
+gg_con_MonRePrompt	KEYWORD2
+gg_con_MonPrompt	KEYWORD2
+gg_con_MonStart		KEYWORD2
+gg_con_Check		KEYWORD2
+gg_con_MonCheck		KEYWORD2
+gg_con_MonExec		KEYWORD2
+gg_con_MonBuf2ArgNC	KEYWORD2
+gg_con_MonBuf2Arg	KEYWORD2
+gg_con_MonExecArg	KEYWORD2
+gg_con_CmdInit		KEYWORD2
+gg_con_CmdAdd		KEYWORD2
+gg_con_CmdN			KEYWORD2
+gg_con_CmdHelp		KEYWORD2
+gg_con_CmdHelpAll	KEYWORD2
+gg_con_CmdSearch	KEYWORD2
+gg_con_CmdSearchX	KEYWORD2
+gg_con_RegistCMD	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+# gg_console.h
+GG_CON_BUFMAX		LITERAL1
+GG_CON_ARGMAX		LITERAL1
+GG_CON_EXIT			LITERAL1
