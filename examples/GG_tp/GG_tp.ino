@@ -29,9 +29,9 @@ void loop() {
   GG_TP_ON(10);   // number 10 ON
   GG_TP_OFF(10);  // number 10 OFF
 
-  // number 20 : Observe the processing time of gg_con_MonCheck()
+  // number 20 : Observe the processing time of gg_con_Check()
   GG_TP_ON(20);   // number 20 ON
-  gg_con_MonCheck();  // console processing (returns immediately if nothing is done)
+  gg_con_Check();  // console processing (returns immediately if nothing is done)
   GG_TP_OFF(20);  // number 20 OFF
 
   // number 30 : Observe the processing time of delayMicroseconds(100)

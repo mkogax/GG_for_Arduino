@@ -13,7 +13,7 @@
 
   Example
 
-  ** GG monitor
+  ** GG console
   >help
   -- GG standard command --
           help [cmd..]                  : command help
@@ -44,7 +44,7 @@ void setup() {
 }
 
 void loop() {
-  gg_con_MonCheck();  // console processing (returns immediately if nothing is done)
+  gg_con_Check();  // console processing (returns immediately if nothing is done)
 }
 
 int C_test1(int argc, char **argv)

@@ -11,5 +11,5 @@ void setup() {
 }
 
 void loop() {
-  gg_con_MonCheck();  // console processing (returns immediately if nothing is done)
+  gg_con_Check();  // console processing (returns immediately if nothing is done)
 }

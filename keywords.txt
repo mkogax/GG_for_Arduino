@@ -69,7 +69,7 @@ gg_tim_checkdt		KEYWORD2
 gg_tim_repairdt		KEYWORD2
 gg_tim_tt2week		KEYWORD2
 
-# gg_printf.h
+# gg_printf.hs
 gg_vxprintf			KEYWORD2
 gg_xprintf			KEYWORD2
 gg_printf			KEYWORD2
@@ -103,8 +103,6 @@ gg_con_CmdAdd		KEYWORD2
 gg_con_CmdN			KEYWORD2
 gg_con_CmdHelp		KEYWORD2
 gg_con_CmdHelpAll	KEYWORD2
-gg_con_CmdSearch	KEYWORD2
-gg_con_CmdSearchX	KEYWORD2
 gg_con_RegistCMD	KEYWORD2
 
 

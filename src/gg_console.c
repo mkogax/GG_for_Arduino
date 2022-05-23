@@ -41,7 +41,7 @@ int gg_con_MonPrompt(void)			// プロンプト表示(内部で使用)
 
 int gg_con_MonStart(void)			// デバッグモニタ開始(タイトル表示)
 {
-	gg_PutS("** GG monitor\n");
+	gg_PutS("** GG console\n");
 	gg_con_MonPrompt();				// バッファクリアとプロンプト表示
 	return 0;
 }
@@ -507,9 +507,9 @@ static int C_tp(int argc, char**argv)					// TP設定
 	if (argc<=4) {
 		if (argc>1) GG_TP1	 = gg_asc2int(argv[1]);
 		if (argc>2) GG_TP2	 = gg_asc2int(argv[2]);
-		gg_printf("<TP(テストピン)状態番号設定(一致した状態番号の出力がテストピンに現われる)>\n");
-		gg_printf("TP1 = %3d (-1=OFF)\n", GG_TP1);
-		gg_printf("TP2 = %3d (-1=OFF)\n", GG_TP2);
+		gg_printf("<TP status number(The specified status number appears in TP)>\n");
+		gg_printf("TP1 = %3d (-1=do nothing)\n", GG_TP1);
+		gg_printf("TP2 = %3d (-1=do nothing)\n", GG_TP2);
 	} else {
 		gg_con_CmdHelp(argv[0]);
 	}
