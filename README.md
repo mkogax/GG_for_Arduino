@@ -4,9 +4,9 @@ GG for Arduino is a serial console library. It also contains various functions f
 
 ## Console
 
-With GG, you can implement a command line interface on your Arduino and add your own commands.  
+You can implement a command line interface on your Arduino and add your own commands.  
 
-### Specifications
+### Communication specifications
 
 * Arduino standard serial(Serial)
 * 115200BPS / 8bit data length / non-parity
@@ -28,9 +28,33 @@ After creating the function of the original command, register it as shown in the
 
 * [GG_console_cmd.ino](examples/GG_console_cmd/GG_console_cmd.ino).
 
+### How to use without command line interface
+
+You can use character output like printf () without command line interface.  
+See example below.
+
+* [GG_printf.ino](examples/GG_printf/GG_printf.ino).
+
+### Timing analysis
+
+By using the TP function, you can analyze the timing of your program's operation.  
+You can measure the processing time of the routine. It is also convenient for observing the status of interrupt processing and task processing in the RTOS.  
+
+First, embed the status number control (GG_TP_ON / GG_TP_OFF) in the program point you want to analyze. Then use the tp command to select the status number to be output to TP1 or TP2. You can also switch at any time.  
+
+Millions of logical state numbers can be placed, but there are only two physical outputs, TP1 and TP2. This is limited because the number of physical signals is limited and the CPU load increases when many signal pin switchings are checked.
+
+In the sample below, TP1 is Arduino pin 2 and TP2 is Arduino pin 3. The oscilloscope has TP1 (pin 2) connected to yellow CH1 and TP2 (pin 3) connected to purple CH2. The tp command (tp 10 30) sets TP1 to status number 10 and TP2 to status number 30.
+
+* [GG_tp.ino](examples/GG_tp/GG_tp.ino).  
+
+![tp_10_30](tp_10_30.jpg "Y:TP1(status number 10),M:TP2(status number 30)")
+
 ## Functions
 
-|Functions / Variables|Specification|
+All functions do not use the heap.
+
+|Functions / Variables|specification|
 |--|---|
 |***GG_for_Arduino.h***||
 |int gg_start(const char \*title)|Start processing GG for Arduino|
@@ -66,7 +90,7 @@ After creating the function of the original command, register it as shown in the
 |***gg_printf.h***||
 |int gg_vxprintf(int (\*putc)(int), const char \*fmt, va_list vlst)|vprintf() with putc()|
 |int gg_xprintf(int (\*putc)(int), const char \*fmt, ...)|printf() with putc()|
-|int gg_printf(const char \*fmt, ...)|printf() with standard output|
+|int gg_printf(const char \*fmt, ...)|printf() with standard output.% e is not implemented|
 |int gg_vsprintf(char \*buf, const char \*fmt, va_list vlst)|vsprintf() to buf[]|
 |int gg_sprintf(char \*buf, const char \*fmt, ...)|sprintf() to buf[]|
 |gg_printDATE(gg_time_t)|"YY/MM/DD"|
@@ -78,7 +102,7 @@ After creating the function of the original command, register it as shown in the
 |GG_CON_CMDMRK(title)|Display delimiter of list in help|
 |GG_CON|Work area for console (internal use)|
 |int gg_con_MonInit(void)|Console initialization|
-|char \*gg_con_prompt|Prompt string|
+|char \*gg_con_prompt|Prompt string. ">" by default|
 |int gg_con_MonRePrompt(void)|Redisplay prompt|
 |int gg_con_MonPrompt(void)|Prompt display (used internally)|
 |int gg_con_Check(void)|Console check with gg_GetC()|

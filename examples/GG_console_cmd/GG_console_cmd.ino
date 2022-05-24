@@ -13,7 +13,7 @@
 
   Example
 
-  ** GG console
+  ** GG **
   >help
   -- GG standard command --
           help [cmd..]                  : command help
