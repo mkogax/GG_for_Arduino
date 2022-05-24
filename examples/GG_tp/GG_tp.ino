@@ -18,7 +18,7 @@
 void setup() {
   gg_tp1_no = 2;  // Arduino pin number for TP1
   gg_tp2_no = 3;  // Arduino pin number for TP2
-  gg_init();      // initialization
+  gg_start("** GG **\n>");    // Start processing GG for Arduino
 }
 
 void loop() {

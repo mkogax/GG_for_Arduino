@@ -11,7 +11,7 @@
 int gg_DI_count;					// 割込み禁止ネスト数(0=割込み許可中)
 int gg_tp1_no = -1;					// TP1出力ピン番号(-1=なし)
 int gg_tp2_no = -1;					// TP2出力ピン番号(-1=なし)
-long gg_con_baud = 115200;			// コンソール用シリアル(Serial)のボーレート(-1=gg_init()で初期化しない)
+long gg_con_baud = 115200;			// コンソール用シリアル(Serial)のボーレート(-1=gg_start()で初期化しない)
 
 static int std_putc_sub(int c)
 {
@@ -28,7 +28,7 @@ static int std_getc()
   return Serial.read();
 }
 
-int gg_init(void)					// Arduino用GGツール初期化
+int gg_start(const char *title)		// Arduino用GGの処理開始
 {
 	// TP出力の初期化(セットされてれば出力に初期化)
 	if (gg_tp1_no>=0) pinMode(gg_tp1_no, OUTPUT);
@@ -45,7 +45,9 @@ int gg_init(void)					// Arduino用GGツール初期化
 	ggbase_init();    	// GGツール初期化
 	gg_con_MonInit();	// GGモニタ初期化	
 	gg_con_RegistCMD();	// 標準コマンド登録
-	gg_con_MonStart();	// GGモニタ開始(タイトルとプロンプト表示)
+
+	// デバッグモニタ開始(タイトル表示) 旧:gg_con_MonStart()
+	if (title) gg_PutS(title);
 
 	return 0;
 }

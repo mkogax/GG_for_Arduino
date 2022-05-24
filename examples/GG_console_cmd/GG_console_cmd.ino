@@ -36,7 +36,7 @@
 */
 
 void setup() {
-  gg_init();    // initialization
+  gg_start("** GG **\n>");    // Start processing GG for Arduino
 
   // Register with console command (you can add more and more in this way)
   GG_CON_CMDMRK("-- Example of original command registration --");     // Delimited line (displayed in the command list)

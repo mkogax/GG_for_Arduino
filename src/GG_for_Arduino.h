@@ -10,12 +10,12 @@
 
 #include "ggbase.h"
 
-//	gg_init()時の変更可能パラメータ(事前にデフォルト値が入っている)(Arduino専用)
+//	gg_start()時の変更可能パラメータ(事前にデフォルト値が入っている)(Arduino専用)
 extern int gg_tp1_no;				// TP1出力ピン番号(-1=なし)
 extern int gg_tp2_no;				// TP2出力ピン番号(-1=なし)
-extern long gg_con_baud;			// コンソール用シリアル(Serial)のボーレート(負数ならgg_init()で初期化しない)
+extern long gg_con_baud;			// コンソール用シリアル(Serial)のボーレート(負数ならgg_start()で初期化しない)
 
-int gg_init(void);					// Arduino用GGツール初期化
+int gg_start(const char *title);	// Arduino用GGの処理開始
 
 
 #endif	//	__GG_FOR_ARDUINO_H__

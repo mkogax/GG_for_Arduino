@@ -23,10 +23,11 @@ int gg_con_MonInit(void)			// デバッグモニタ初期化
 	return 0;
 }
 
+char *gg_con_prompt = ">";			// プロンプト文字列		2022.05.24 M.Kogan
 int gg_con_MonRePrompt(void)		// プロンプト再表示
 {
 	int i;
-	gg_PutC('>');							// プロンプト
+	if (gg_con_prompt) gg_PutS(gg_con_prompt);	// プロンプト
 	for (i=0; i<GG_CON.BufP; i++) {
 		gg_PutC(GG_CON.Buf[i]);
 	}
@@ -37,13 +38,6 @@ int gg_con_MonPrompt(void)			// プロンプト表示(内部で使用)
 {
 	GG_CON.BufP = 0;						// バッファクリア
 	return gg_con_MonRePrompt();
-}
-
-int gg_con_MonStart(void)			// デバッグモニタ開始(タイトル表示)
-{
-	gg_PutS("** GG console\n");
-	gg_con_MonPrompt();				// バッファクリアとプロンプト表示
-	return 0;
 }
 
 int gg_con_Check(void)				// デバッグモニタチェック(0=実行無か実行成功,-999=EXIT要請)(gg_GetC()から1文字受付)

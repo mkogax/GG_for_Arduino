@@ -72,9 +72,9 @@ extern GGT_CON GG_CON;				// GG_CONワーク(gg_console.c)
 //
 #define GG_CON_EXIT	(-999)			// EXITコード
 int gg_con_MonInit(void);			// デバッグモニタ初期化
+extern char *gg_con_prompt;			// プロンプト文字列
 int gg_con_MonRePrompt(void);		// プロンプト再表示
 int gg_con_MonPrompt(void);			// プロンプト表示(内部で使用)
-int gg_con_MonStart(void);			// デバッグモニタ開始(タイトル表示)
 int gg_con_Check(void);				// デバッグモニタチェック(0=実行無か実行成功,-999=EXIT要請)(gg_GetC()から1文字受付)
 int gg_con_MonCheck(int c);			// デバッグモニタチェック(0=実行無か実行成功,-999=EXIT要請)(1文字受付)
 

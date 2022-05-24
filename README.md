@@ -30,24 +30,17 @@ After creating the function of the original command, register it as shown in the
 
 ## Functions
 
-|GG_for_Arduino.h|function|
+|Functions / Variables|Specification|
 |--|---|
-|int gg_init(void)|Initialization of GG for Arduino|
-|int gg_tp1_no|Arduino output pin number for TP1. Set before gg_init() if necessary|
-|int gg_tp2_no|Arduino output pin number for TP2. Set before gg_init() if necessary|
-|long gg_con_baud|baud rate. Set before gg_init() if necessary|
-
-|gg_base.h|function|
-|--|---|
+|***GG_for_Arduino.h***||
+|int gg_start(const char \*title)|Start processing GG for Arduino|
+|int gg_tp1_no|Arduino output pin number for TP1. Set before gg_start() if necessary|
+|int gg_tp2_no|Arduino output pin number for TP2. Set before gg_start() if necessary|
+|long gg_con_baud|baud rate. Set before gg_start() if necessary|
+|***gg_base.h***||
 |GG_TP_ON(number)|Turn on the TP status number|
 |GG_TP_OFF(number)|Turn off the TP status number|
-
-|gg_uty.h|function|
-|--|---|
-|int gg_init(void)|Initialization of GG for Arduino|
-|int gg_tp1_no|Arduino output pin number for TP1. Set before gg_init() if necessary|
-|int gg_tp2_no|Arduino output pin number for TP2. Set before gg_init() if necessary|
-|long gg_con_baud|baud rate. Set before gg_init() if necessary|
+|***gg_uty.h***||
 |GG_TP_ON(number)|Turn on the TP status number|
 |GG_TP_OFF(number)|Turn off the TP status number|
 |int gg_GetC(void)|1 character input (-1 = no input)|
@@ -70,28 +63,24 @@ After creating the function of the original command, register it as shown in the
 |int gg_tim_checkdt(GGT_TIME \*t)|Date and time validity check|
 |int gg_tim_repairdt(GGT_TIME \*t)|Date and time correction|
 |int gg_tim_tt2week(gg_time_t x)|Determine what day of the week from gg_time_t(0=sun,..)|
-
-|gg_printf.h|function|
-|--|---|
-|int gg_vxprintf(int (*putc)(int), const char *fmt, va_list vlst)|vprintf() with putc()|
-|int gg_xprintf(int (*putc)(int), const char *fmt, ...)|printf() with putc()|
-|int gg_printf(const char *fmt, ...)|printf() with standard output|
-|int gg_vsprintf(char *buf, const char *fmt, va_list vlst)|vsprintf() to buf[]|
-|int gg_sprintf(char *buf, const char *fmt, ...)|sprintf() to buf[]|
+|***gg_printf.h***||
+|int gg_vxprintf(int (\*putc)(int), const char \*fmt, va_list vlst)|vprintf() with putc()|
+|int gg_xprintf(int (\*putc)(int), const char \*fmt, ...)|printf() with putc()|
+|int gg_printf(const char \*fmt, ...)|printf() with standard output|
+|int gg_vsprintf(char \*buf, const char \*fmt, va_list vlst)|vsprintf() to buf[]|
+|int gg_sprintf(char \*buf, const char \*fmt, ...)|sprintf() to buf[]|
 |gg_printDATE(gg_time_t)|"YY/MM/DD"|
 |gg_printTIME(gg_time_t)|"hh:mm:ss"|
 |gg_printDT(gg_time_t)|"YY/MM/DD hh:mm:ss"|
 |gg_printDTs(gg_time_t)|"YY/MM/DD hh:mm:ss "|
-
-|gg_console.h|function|
-|--|---|
+|***gg_console.h***||
 |GG_CON_CMDADD(func, cmd, prm, help)|Registering console commands|
 |GG_CON_CMDMRK(title)|Display delimiter of list in help|
 |GG_CON|Work area for console (internal use)|
 |int gg_con_MonInit(void)|Console initialization|
+|char \*gg_con_prompt|Prompt string|
 |int gg_con_MonRePrompt(void)|Redisplay prompt|
 |int gg_con_MonPrompt(void)|Prompt display (used internally)|
-|int gg_con_MonStart(void)|Console start (title)|
 |int gg_con_Check(void)|Console check with gg_GetC()|
 |int gg_con_MonCheck(int c)|Console check with 1 character|
 |int gg_con_MonExec(char \*buf)|Command line processing (Note: buf is destroyed by arg analysis)|

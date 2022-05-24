@@ -7,7 +7,7 @@
 */
 
 void setup() {
-  gg_init();    // initialization
+  gg_start("** GG **\n>");    // Start processing GG for Arduino
 }
 
 void loop() {
