@@ -138,9 +138,11 @@ int gg_con_MonExecArg(int argc, char **argv)				// コマンド処理(arg)
 	if (!argc) return 0;					// コマンドなし(改行のみ)は成功とみなす
 
 	// コマンド解析
-	GGT_CMD *cp = gg_con_CmdSearch(argv[0]);	// コマンド検索
-	if (cp) {									// 見つかれば
-		return cp->func(argc, argv);			// コマンド関数実行
+	{		// C89だとエラーになるので{}を付けた	2022.06.03 M.Kogan
+		GGT_CMD *cp = gg_con_CmdSearch(argv[0]);	// コマンド検索
+		if (cp) {									// 見つかれば
+			return cp->func(argc, argv);			// コマンド関数実行
+		}
 	}
 
 	// 見つからないときのエラー表示
@@ -174,15 +176,17 @@ int gg_con_CmdAdd(GGT_CMD *def)		// コマンド定義リストの追加
 	}
 
 	// リストの最後に追加
-	GGT_CMD *p = GG_CON.cmd.link;
-	while(1) {
-		if (p==def) return -1;	// 登録済みの同じアドレス(同じ定義)なら無効
-		if (!p->next) {			// 最後なら追加
-			p->next = def;		// 最後の次に追加
-			def->next = NULL;	// 次=なし
-			break;
+	{		// C89だとエラーになるので{}を付けた	2022.06.03 M.Kogan
+		GGT_CMD *p = GG_CON.cmd.link;
+		while(1) {
+			if (p==def) return -1;	// 登録済みの同じアドレス(同じ定義)なら無効
+			if (!p->next) {			// 最後なら追加
+				p->next = def;		// 最後の次に追加
+				def->next = NULL;	// 次=なし
+				break;
+			}
+			p = p->next;			// (上でチェック済みなのでpはNULLにならない)
 		}
-		p = p->next;			// (上でチェック済みなのでpはNULLにならない)
 	}
 	return 0;					// 登録OK(0)
 }
