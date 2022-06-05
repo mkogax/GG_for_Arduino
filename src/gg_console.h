@@ -131,7 +131,8 @@ GGT_CMD* gg_con_CmdSearchX(char *name);// コマンド名のサーチ(nameは途
 //
 //--------------------------------------------------------------------------
 
-int gg_con_RegistCMD(void);		// 基本コマンドの登録
+int gg_con_RegistHelpCMD(void);		// helpコマンド登録
+int gg_con_RegistMemCMD(void);		// メモリ系コマンド登録
 
 
 

@@ -4,6 +4,19 @@
   GG for Arduino ** Printf() demo
   Arduino standard serial (115200bps / 8bit length / non-parity)
   No command line interface
+
+
+  Example
+
+  ** GG start
+  [setup] millis()=       0
+  [loop] millis()=       0
+  c=  1=0x01=0b00000001
+  delay(1000)
+  [loop] millis()=    1002
+  c=  2=0x02=0b00000010
+  delay(1000)
+
 */
 
 void setup() {

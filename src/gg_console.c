@@ -138,11 +138,9 @@ int gg_con_MonExecArg(int argc, char **argv)				// コマンド処理(arg)
 	if (!argc) return 0;					// コマンドなし(改行のみ)は成功とみなす
 
 	// コマンド解析
-	{		// C89だとエラーになるので{}を付けた	2022.06.03 M.Kogan
-		GGT_CMD *cp = gg_con_CmdSearch(argv[0]);	// コマンド検索
-		if (cp) {									// 見つかれば
-			return cp->func(argc, argv);			// コマンド関数実行
-		}
+	GGT_CMD *cp = gg_con_CmdSearch(argv[0]);	// コマンド検索
+	if (cp) {									// 見つかれば
+		return cp->func(argc, argv);			// コマンド関数実行
 	}
 
 	// 見つからないときのエラー表示
@@ -176,17 +174,15 @@ int gg_con_CmdAdd(GGT_CMD *def)		// コマンド定義リストの追加
 	}
 
 	// リストの最後に追加
-	{		// C89だとエラーになるので{}を付けた	2022.06.03 M.Kogan
-		GGT_CMD *p = GG_CON.cmd.link;
-		while(1) {
-			if (p==def) return -1;	// 登録済みの同じアドレス(同じ定義)なら無効
-			if (!p->next) {			// 最後なら追加
-				p->next = def;		// 最後の次に追加
-				def->next = NULL;	// 次=なし
-				break;
-			}
-			p = p->next;			// (上でチェック済みなのでpはNULLにならない)
+	GGT_CMD *p = GG_CON.cmd.link;
+	while(1) {
+		if (p==def) return -1;	// 登録済みの同じアドレス(同じ定義)なら無効
+		if (!p->next) {			// 最後なら追加
+			p->next = def;		// 最後の次に追加
+			def->next = NULL;	// 次=なし
+			break;
 		}
+		p = p->next;			// (上でチェック済みなのでpはNULLにならない)
 	}
 	return 0;					// 登録OK(0)
 }
@@ -499,27 +495,17 @@ static int C_mfd(int argc, char**argv)						// メモリフィル(dword)
 	return 0;
 }
 
-#ifndef GG_TP_NOCODE	// TP対応
-static int C_tp(int argc, char**argv)					// TP設定
+
+int gg_con_RegistHelpCMD(void)		// helpコマンド登録
 {
-	if (argc<=4) {
-		if (argc>1) GG_TP1	 = gg_asc2int(argv[1]);
-		if (argc>2) GG_TP2	 = gg_asc2int(argv[2]);
-		gg_printf("<TP status number(The specified status number appears in TP)>\n");
-		gg_printf("TP1 = %3d (-1=do nothing)\n", GG_TP1);
-		gg_printf("TP2 = %3d (-1=do nothing)\n", GG_TP2);
-	} else {
-		gg_con_CmdHelp(argv[0]);
-	}
+	GG_CON_CMDADD(C_help, 	"help",		"[cmd..]",				"command help"		);
+	GG_CON_CMDADD(C_help, 	"?",		"[cmd..]",				"!command help"		);
 	return 0;
 }
-#endif
 
-int gg_con_RegistCMD(void)		// 基本コマンドの登録
+int gg_con_RegistMemCMD(void)		// メモリ系コマンド登録
 {
-	GG_CON_CMDMRK("-- GG standard command --");			// 区切り行（helpでコマンド一覧のときに表示）
-	GG_CON_CMDADD(C_help, 	"help",		"[cmd..]",				"command help"		);
-	GG_CON_CMDADD(C_quit, 	"quit", 	"",						"!quit"				);		// ヘルプ文字列先頭に!のある行は一覧表示をスキップ
+	GG_CON_CMDMRK("-- memory command --");			// 区切り行（helpでコマンド一覧のときに表示）
 	GG_CON_CMDADD(C_mdb,	"md",		"[addr [alen]]",		"mem dump"			);		// メモリ系共通処理
 	GG_CON_CMDADD(C_msb,	"ms",		"addr data..",			"mem set"			);		//
 	GG_CON_CMDADD(C_mfb,	"mf",		"addr alen data",		"mem fill"			);		//
@@ -532,8 +518,5 @@ int gg_con_RegistCMD(void)		// 基本コマンドの登録
 	GG_CON_CMDADD(C_mfb,	"mfb",		"addr alen data",		"!mem fill(byte)"	);		//
 	GG_CON_CMDADD(C_mfw,	"mfw",		"addr alen data",		"!mem fill(word)"	);		//
 	GG_CON_CMDADD(C_mfd,	"mfd",		"addr alen data",		"!mem fill(dword)"	);		//
-#ifndef GG_TP_NOCODE	// TP対応
-	GG_CON_CMDADD(C_tp,		"tp",		"[#1 [#2]]",			"TP(test point) select"	);		//
-#endif
 	return 0;
 }

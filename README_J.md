@@ -13,12 +13,22 @@ Arduinoでコマンドラインインターフェース（コンソールの基�
 * エコーバックはGGが出す（端末でキーを打てば打ったキーが表示されます）
 * CR(\r)またはLF(\n)でコマンド実行
 
-### 定義済みコマンド
+### 登録済みコマンド
 
 * `help` コマンド一覧の表示
+
+### gg_con_RegistMemCMD()で追加登録されるコマンド
+
 * `md` メモリダンプ
 * `ms` メモリセット
 * `mf` メモリフィル（ブロックセット）
+
+下記の例をご覧ください。
+
+* [GG_console.ino](examples/GG_console/GG_console.ino).
+
+### gg_tp_start()で追加登録されるコマンド
+
 * `tp` TP(テストポイント)の状態番号の表示と変更
 
 ### コマンドの追加方法
@@ -59,12 +69,14 @@ TP（テストポイント）機能を使ってプログラムのタイミング
 |--|---|
 |***GG_for_Arduino.h***||
 |int gg_start(const char \*title)|GG for Arduino の開始|
-|int gg_tp1_no|TP1のArduinoピン番号. TP1を使うならgg_start()の前にセット|
-|int gg_tp2_no|TP2のArduinoピン番号. TP2を使うならgg_start()の前にセット|
 |long gg_con_baud|ボーレート. 115200から変更するならgg_start()の前にセット|
-|***gg_base.h***||
+|int gg_tp_start(int tp1_no, int tp2_no)|TP機能スタート(出力ピン初期化とコマンド登録)|
 |GG_TP_ON(number)|TP状態番号をON|
 |GG_TP_OFF(number)|TP状態番号をOFF|
+|***gg_uty.h***||
+|int gg_GetC(void)|1 character input (-1 = no input)|
+|int gg_PutC(int c)|1 character output|
+|int gg_PutS(const char \*s)|String output|
 |***gg_uty.h***||
 |int gg_GetC(void)|1文字入力 (-1 = 入力なし)|
 |int gg_PutC(int c)|1文字出力|
@@ -114,4 +126,4 @@ TP（テストポイント）機能を使ってプログラムのタイミング
 |int gg_con_CmdN(void)|コマンド登録数|
 |int gg_con_CmdHelp(char \*cmd)|cmdのヘルプ表示|
 |int gg_con_CmdHelpAll(void)|コマンド一覧の表示|
-|int gg_con_RegistCMD(void)|定義済みコマンドの登録(内部で使用)|
+|int gg_con_RegistMemCMD(void)|メモリ系コマンド登録|

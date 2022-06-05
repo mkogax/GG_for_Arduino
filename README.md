@@ -18,9 +18,19 @@ You can implement a command line interface on your Arduino and add your own comm
 ### Pre-registered commands
 
 * `help` help
+
+### Prepared command (gg_con_RegistMemCMD())
+
 * `md` mem dump
 * `ms` mem set
 * `mf` mem fill
+
+See example below.
+
+* [GG_console.ino](examples/GG_console/GG_console.ino).
+
+### Prepared command (gg_tp_start())
+
 * `tp` TP(test point) select
 
 ### How to add your own command
@@ -60,15 +70,11 @@ All functions do not use the heap.
 |--|---|
 |***GG_for_Arduino.h***||
 |int gg_start(const char \*title)|Start processing GG for Arduino|
-|int gg_tp1_no|Arduino output pin number for TP1. Set before gg_start() if necessary|
-|int gg_tp2_no|Arduino output pin number for TP2. Set before gg_start() if necessary|
 |long gg_con_baud|baud rate. Set before gg_start() if necessary|
-|***gg_base.h***||
+|int gg_tp_start(int tp1_no, int tp2_no)|TP function start (output pin initialization and command registration)|
 |GG_TP_ON(number)|Turn on the TP status number|
 |GG_TP_OFF(number)|Turn off the TP status number|
 |***gg_uty.h***||
-|GG_TP_ON(number)|Turn on the TP status number|
-|GG_TP_OFF(number)|Turn off the TP status number|
 |int gg_GetC(void)|1 character input (-1 = no input)|
 |int gg_PutC(int c)|1 character output|
 |int gg_PutS(const char \*s)|String output|
@@ -117,4 +123,4 @@ All functions do not use the heap.
 |int gg_con_CmdN(void)|Number of command registrations|
 |int gg_con_CmdHelp(char \*cmd)|Help for the specified command|
 |int gg_con_CmdHelpAll(void)|Display command list|
-|int gg_con_RegistCMD(void)|Registration of basic commands to be pre-registered|
+|int gg_con_RegistMemCMD(void)|Registration of memory commands|

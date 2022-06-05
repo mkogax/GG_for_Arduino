@@ -13,12 +13,29 @@
   You can specify which status number to output to the output pin with the "tp" command.
   >tp 10 20  (TP1 output:status number 10, TP2 output:status number 20）
 
+
+  Example
+
+  ** GG **
+  >help
+          help [cmd..]                  : command help
+  -- TP command --
+            tp [#1 [#2]]                : TP(test point) select
+  >tp
+  <TP status number(The specified status number appears in TP)>
+  TP1 =  -1 (-1=do nothing)
+  TP2 =  -1 (-1=do nothing)
+  >tp 10 20
+  <TP status number(The specified status number appears in TP)>
+  TP1 =  10 (-1=do nothing)
+  TP2 =  20 (-1=do nothing)
+  >
+
  */
 
 void setup() {
-  gg_tp1_no = 2;  // Arduino pin number for TP1
-  gg_tp2_no = 3;  // Arduino pin number for TP2
   gg_start("** GG **\n>");    // Start processing GG for Arduino
+  gg_tp_start(2, 3);          // regiter tp command, setup TP1 and TP2 (Arduino pin number)
 }
 
 void loop() {

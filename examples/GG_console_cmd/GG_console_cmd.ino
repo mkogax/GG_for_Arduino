@@ -15,15 +15,10 @@
 
   ** GG **
   >help
-  -- GG standard command --
           help [cmd..]                  : command help
-            md [addr [alen]]            : mem dump
-            ms addr data..              : mem set
-            mf addr alen data           : mem fill
-            tp [#1 [#2]]                : TP(test pin) set
-  -- Example of registering a console command --
-         test1 [...]                    : Displays the arguments when the command is executed
-  >test1 1 22 333 0xabcd 100+20+0x1000
+  -- Example of original command registration --
+         test1 [...]                    : Display command line arguments when executing this command
+  >test1  1 22 333 0xabcd 100+20+0x1000
   argc=6
   argv[ 0] test1            (0x00000000,0)
   argv[ 1] 1                (0x00000001,1)

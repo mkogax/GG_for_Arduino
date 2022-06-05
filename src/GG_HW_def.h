@@ -1,7 +1,8 @@
 /*
-	ggdef.h	GGツール 個別定義部
+	GG_HW_def.h	GGツール HW定義(HW環境依存部)
 	
 	2022.01.08	M.Kogan	初版開発開始
+	2022.06.05	M.Kogan	ファイル名変更,TP分離
 
 	***********************************
 	***        Arduino専用          ***
@@ -9,8 +10,8 @@
 
 */
 
-#ifndef 	__GGDEF_H__
-#define 	__GGDEF_H__
+#ifndef 	__GG_HW_DEF_H__
+#define 	__GG_HW_DEF_H__
 
 //------------------
 //	割込み禁止制御
@@ -46,20 +47,4 @@ typedef unsigned long long	uint64_t;
 
 #define NULL (0)
 
-
-//------------------
-//	テストポイント(TP機能)設定
-//------------------
-//	以下のテストポイント(TP機能)設定が必要
-//	GG_TP_NOCODE		テストポイント(TP機能)コードの非生成(なければコード生成する)
-//	GG_TP1_ON/OFF		TP1(出力ピン1)制御
-//	GG_TP2_ON/OFF		TP2(出力ピン2)制御
-
-extern void gg_tp1_set(int flag);		// TP1(出力ピン1)出力(GG_for_Arduino.cpp)
-extern void gg_tp2_set(int flag);		// TP2(出力ピン2)出力(GG_for_Arduino.cpp)
-#define GG_TP1_ON()		(gg_tp1_set(1))	// TP1(出力ピン1)をON
-#define GG_TP1_OFF()	(gg_tp1_set(0))	// TP1(出力ピン1)をOFF
-#define GG_TP2_ON()		(gg_tp2_set(1))	// TP2(出力ピン2)をON
-#define GG_TP2_OFF()	(gg_tp2_set(0))	// TP2(出力ピン2)をOFF
-
-#endif	//	__GG_USERDEF_H__
+#endif	//	__GG_HW_DEF_H__
