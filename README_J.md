@@ -6,6 +6,8 @@ GG for Arduino はシリアルコンソールのライブラリです。コン�
 
 Arduinoでコマンドラインインターフェース（コンソールの基本機能）が実現できます。もちろん自分で作ったコマンドの追加もできます。
 
+https://user-images.githubusercontent.com/11693904/174482312-17b5dc9a-c0d9-4d6a-a9e9-b6fb8989c29e.mp4
+
 ### 通信仕様
 
 * Arduinoの標準シリアル(Serial)
