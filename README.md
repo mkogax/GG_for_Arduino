@@ -8,6 +8,8 @@ GG for Arduino is a serial console library. It also contains various functions f
 
 You can implement a command line interface on your Arduino and add your own commands.  
 
+https://user-images.githubusercontent.com/11693904/174482312-17b5dc9a-c0d9-4d6a-a9e9-b6fb8989c29e.mp4
+
 ### Communication specifications
 
 * Arduino standard serial(Serial)
