@@ -62,7 +62,7 @@ In the sample below, TP1 is Arduino pin 2 and TP2 is Arduino pin 3. The oscillos
 
 * [GG_tp.ino](examples/GG_tp/GG_tp.ino).  
 
-![tp_10_30](tp_10_30.jpg "Y:TP1(status number 10),M:TP2(status number 30)")
+https://user-images.githubusercontent.com/11693904/174753954-4fe72062-f222-4848-b2a1-9c6575c5a101.mp4
 
 ## Functions
 
