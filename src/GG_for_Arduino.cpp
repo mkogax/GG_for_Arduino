@@ -5,7 +5,7 @@
 
 */
 
-#include "GG_for_Arduino.h"
+#include "GG.h"
 #include "Arduino.h"
 
 int gg_DI_count;					// 割込み禁止ネスト数(0=割込み許可中)

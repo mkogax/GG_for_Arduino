@@ -1,12 +1,12 @@
 /*
-	GG_for_Arduino.h		Arduino用GGツール(ヘッダファイル)
+	GG.h		Arduino用GGツール(ヘッダファイル)
 	
 	2022.04.30	M.Kogan	初版開発開始
 
 */
 
-#ifndef 	__GG_FOR_ARDUINO_H__
-#define 	__GG_FOR_ARDUINO_H__
+#ifndef 	__GG_H__
+#define 	__GG_H__
 
 #include "ggbase.h"
 
@@ -62,4 +62,4 @@ extern int gg_tp2_no;		// TP2出力ピン番号(-1=なし)
 int gg_tp_start(int tp1_no, int tp2_no);		// TP機能スタート(出力ピン初期化とコマンド登録)
 
 
-#endif	//	__GG_FOR_ARDUINO_H__
+#endif	//	__GG_H__

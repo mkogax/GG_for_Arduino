@@ -70,7 +70,7 @@ All functions do not use the heap.
 
 |Functions / Variables|specification|
 |--|---|
-|***GG_for_Arduino.h***||
+|***GG.h***||
 |int gg_start(const char \*title)|Start processing GG for Arduino|
 |long gg_con_baud|baud rate. Set before gg_start() if necessary|
 |int gg_tp_start(int tp1_no, int tp2_no)|TP function start (output pin initialization and command registration)|

@@ -1,4 +1,4 @@
-#include <GG_for_Arduino.h>
+#include <GG.h>
 
 /*
   GG for Arduino ** Printf() demo

@@ -53,7 +53,7 @@ https://user-images.githubusercontent.com/11693904/174482312-17b5dc9a-c0d9-4d6a-
 TP（テストポイント）機能を使ってプログラムのタイミング分析ができます。  
 サブルーチンの処理時間を測定することができます。また割込み処理やRTOSのタスク処理の状況確認にも使えます。  
 
-まず、分析するプログラムポイントにステータス番号コントロール（GG_TP_ON / GG_TP_OFF）を埋め込みます。 次に、tpコマンドを使用して、TP1またはTP2に出力するステータス番号を選択します。 ステータス番号はいつでもtpコマンドで切り替えることができます。  
+まず、分析するプログラムポイントに状態番号コントロール（GG_TP_ON / GG_TP_OFF）を埋め込みます。 次に、tpコマンドを使用して、TP1またはTP2に出力する状態番号を選択します。 状態番号はいつでもtpコマンドで切り替えることができます。  
 
 状態番号はいくつでも配置できますが、物理的な出力先はTP1とTP2の2つだけです。 Arduinoのピン数が制限されていることと、出力チェックは出力先が増えるだけCPU負荷が増加することから、出力先が2つに限定されています。  
 
@@ -69,16 +69,12 @@ https://user-images.githubusercontent.com/11693904/174753954-4fe72062-f222-4848-
 
 |関数 / 変数|仕様|
 |--|---|
-|***GG_for_Arduino.h***||
+|***GG.h***||
 |int gg_start(const char \*title)|GG for Arduino の開始|
 |long gg_con_baud|ボーレート. 115200から変更するならgg_start()の前にセット|
 |int gg_tp_start(int tp1_no, int tp2_no)|TP機能スタート(出力ピン初期化とコマンド登録)|
 |GG_TP_ON(number)|TP状態番号をON|
 |GG_TP_OFF(number)|TP状態番号をOFF|
-|***gg_uty.h***||
-|int gg_GetC(void)|1 character input (-1 = no input)|
-|int gg_PutC(int c)|1 character output|
-|int gg_PutS(const char \*s)|String output|
 |***gg_uty.h***||
 |int gg_GetC(void)|1文字入力 (-1 = 入力なし)|
 |int gg_PutC(int c)|1文字出力|

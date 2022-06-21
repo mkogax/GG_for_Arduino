@@ -20,7 +20,7 @@ GGT_CON				KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-# GG_for_Arduino.h
+# GG.h
 gg_init				KEYWORD2
 gg_tp1_no			KEYWORD2
 gg_tp2_no			KEYWORD2
