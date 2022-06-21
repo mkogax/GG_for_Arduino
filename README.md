@@ -58,7 +58,7 @@ First, embed the status number control (GG_TP_ON / GG_TP_OFF) in the program poi
 
 Millions of logical state numbers can be placed, but there are only two physical outputs, TP1 and TP2. This is limited because the number of physical signals is limited and the CPU load increases when many signal pin switchings are checked.
 
-In the sample below, TP1 is Arduino pin 2 and TP2 is Arduino pin 3. The oscilloscope has TP1 (pin 2) connected to yellow CH1 and TP2 (pin 3) connected to purple CH2. The tp command (tp 10 30) sets TP1 to status number 10 and TP2 to status number 30.
+In the sample below, TP1 is Arduino pin 2 and TP2 is Arduino pin 3. The oscilloscope has TP1 (pin 2) connected to yellow CH1 and TP2 (pin 3) connected to purple CH2. 
 
 * [GG_tp.ino](examples/GG_tp/GG_tp.ino).  
 
