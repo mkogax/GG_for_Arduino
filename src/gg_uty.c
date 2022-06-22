@@ -4,7 +4,7 @@
 	2022.01.25	M.Kogan	初版開発開始
 */
 
-#include "ggbase.h"
+#include "GG.h"
 
 
 
@@ -16,6 +16,7 @@
 
 static int null_putc(int c)					// 標準出力関数(デフォルト,何もしない)
 {
+	(void)c;
 	return 0;
 }
 static int null_getc(void)					// 標準入力関数(デフォルト,何も返さない)

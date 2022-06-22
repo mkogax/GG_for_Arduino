@@ -4,7 +4,7 @@
 	2022.01.10	M.Kogan	初版開発開始
 */
 
-#include "ggbase.h"
+#include "GG.h"
 
 //
 //	書式付変換(汎用)
@@ -299,7 +299,8 @@ static int VXprintf(T_XPW *xpw, const char *fmt, va_list vlst)	// 文字列に�
 				if (xpw->flags&XPF_l) {			// 'l'
 					XCnvInt(xpw, va_arg(vlst, long));					// 十進変換(long)
 				} else if (xpw->flags&XPF_h) {	// 'h'
-					XCnvInt(xpw, va_arg(vlst, short));					// 十進変換(short)
+				//	XCnvInt(xpw, va_arg(vlst, short));					// 十進変換(short)
+					XCnvInt(xpw, va_arg(vlst, int));					// 十進変換(short-->int)
 				} else {						// 通常
 					XCnvInt(xpw, va_arg(vlst, int));					// 十進変換(int)
 				}
@@ -313,7 +314,8 @@ static int VXprintf(T_XPW *xpw, const char *fmt, va_list vlst)	// 文字列に�
 				if (xpw->flags&XPF_l) {			// 'l'
 					XCnvXOB(xpw, va_arg(vlst, unsigned long), c);		// uint/HEX/OCT/BIN変換(unsigned long)
 				} else if (xpw->flags&XPF_h) {	// 'h'
-					XCnvXOB(xpw, va_arg(vlst, unsigned short), c);		// uint/HEX/OCT/BIN変換(unsigned short)
+				//	XCnvXOB(xpw, va_arg(vlst, unsigned short), c);		// uint/HEX/OCT/BIN変換(unsigned short)
+					XCnvXOB(xpw, va_arg(vlst, unsigned int), c);		// uint/HEX/OCT/BIN変換(unsigned short-->unsigned int)
 				} else {						// 通常
 					XCnvXOB(xpw, va_arg(vlst, unsigned int), c);		// uint/HEX/OCT/BIN変換(unsigned int)
 				}
@@ -323,7 +325,8 @@ static int VXprintf(T_XPW *xpw, const char *fmt, va_list vlst)	// 文字列に�
 				if (xpw->flags&XPF_l) {			// 'l'
 					XCnvF(xpw, va_arg(vlst, double));					// 浮動小数点変換(double)
 				} else if (xpw->flags&XPF_h) {	// 'h'
-					XCnvF(xpw, va_arg(vlst, float));					// 浮動小数点変換(float)
+				//	XCnvF(xpw, va_arg(vlst, float));					// 浮動小数点変換(float)
+					XCnvF(xpw, va_arg(vlst, double));					// 浮動小数点変換(float-->double)
 				} else {						// 通常
 					XCnvF(xpw, va_arg(vlst, double));					// 浮動小数点変換(double)
 				}
@@ -332,7 +335,8 @@ static int VXprintf(T_XPW *xpw, const char *fmt, va_list vlst)	// 文字列に�
 		//	case 'e':			// E形式は非対応
 		//		break;
 			case 'c':			// １文字変換
-				XCnvC(xpw, va_arg(vlst, char));		// １文字変換
+			//	XCnvC(xpw, va_arg(vlst, char));		// １文字変換
+				XCnvC(xpw, va_arg(vlst, int));		// １文字変換(char-->int)
 				XPrintDFS(xpw);							// 整列表示
 				break;
 			case 's':			// 文字列変換

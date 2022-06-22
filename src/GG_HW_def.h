@@ -45,6 +45,8 @@ typedef unsigned long long	uint64_t;
 #include "stdint.h"
 #endif
 
+#ifndef NULL
 #define NULL (0)
+#endif
 
 #endif	//	__GG_HW_DEF_H__

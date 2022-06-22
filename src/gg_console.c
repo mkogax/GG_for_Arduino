@@ -4,7 +4,7 @@
 	2022.01.25	M.Kogan	初版開発開始
 */
 
-#include "ggbase.h"
+#include "GG.h"
 
 GGT_CON GG_CON;				// GG_CONワークの実体
 
@@ -276,7 +276,7 @@ GGT_CMD* gg_con_CmdSearchX(char *name)	// コマンド名のサーチ(nameは途
 //
 //--------------------------------------------------------------------------
 
-static C_help(int argc, char **argv)
+static int C_help(int argc, char **argv)
 {
 	int i;
 	if (argc>1) {
@@ -289,12 +289,14 @@ static C_help(int argc, char **argv)
 	return 0;
 }
 
+#if 0
 static int C_quit(int argc, char**argv)			// 終了(EXITコード発行)
 {
 	if (argc==1) return GG_CON_EXIT;			// EXITコード(-999)
 	gg_con_CmdHelp(argv[0]);
 	return 0;
 }
+#endif
 
 //
 //	メモリダンプ系
@@ -324,7 +326,7 @@ static int mdchar(void *buf, long len)
 static int C_mdb(int argc, char**argv)						// メモリダンプ(byte)
 {
 	uint8_t buf[16];
-	long i, j;
+	unsigned long i, j;
 	GG_CON.PreDetection = 0;
 	if (argc>1) maddr = gg_asc2int(argv[1]);
 	if (argc>2) malen = gg_asc2int(argv[2]);
@@ -333,7 +335,7 @@ static int C_mdb(int argc, char**argv)						// メモリダンプ(byte)
 		for (j=0; j<16; j++) {
 			if (j>=(malen-i)) break;
 			if (j==8) gg_PutC(' ');
-			gg_printf(" %02X", buf[j]=*(uint8_t *)(maddr+i+j));
+			gg_printf(" %02X", buf[j]=*(uint8_t *)((uintptr_t)(maddr+i+j)));
 			if (GG_CON.PreDetection) goto owari;
 		}
 		if (mdchar(buf, malen-i)) goto owari;
@@ -345,7 +347,7 @@ owari:
 static int C_mdw(int argc, char**argv)						// メモリダンプ(word)
 {
 	uint16_t buf[8];
-	long i, j;
+	unsigned long i, j;
 	if (argc>1) maddr = gg_asc2int(argv[1]);
 	if (argc>2) malen = gg_asc2int(argv[2]);
 	GG_CON.PreDetection = 0;
@@ -354,7 +356,7 @@ static int C_mdw(int argc, char**argv)						// メモリダンプ(word)
 		for (j=0; j<16; j+=2) {
 			if (j>=(malen-i)) break;
 			if (j==8) gg_PutC(' ');
-			gg_printf(" %04X", buf[j/2]=*(uint16_t *)(maddr+i+j));
+			gg_printf(" %04X", buf[j/2]=*(uint16_t *)((uintptr_t)(maddr+i+j)));
 			if (GG_CON.PreDetection) goto owari;
 		}
 		if (mdchar(buf, malen-i)) goto owari;
@@ -366,7 +368,7 @@ owari:
 static int C_mdd(int argc, char**argv)						// メモリダンプ(dword)
 {
 	uint32_t buf[8];
-	long i, j;
+	unsigned long i, j;
 	if (argc>1) maddr = gg_asc2int(argv[1]);
 	if (argc>2) malen = gg_asc2int(argv[2]);
 	GG_CON.PreDetection = 0;
@@ -375,7 +377,7 @@ static int C_mdd(int argc, char**argv)						// メモリダンプ(dword)
 		for (j=0; j<16; j+=4) {
 			if (j>=(malen-i)) break;
 			if (j==8) gg_PutC(' ');
-			gg_printf(" %08lX", buf[j/4]=*(uint32_t *)(maddr+i+j));
+			gg_printf(" %08lX", buf[j/4]=*(uint32_t *)((uintptr_t)(maddr+i+j)));
 			if (GG_CON.PreDetection) goto owari;
 		}
 		if (mdchar(buf, malen-i)) goto owari;
@@ -393,7 +395,7 @@ static int C_msb(int argc, char**argv)						// メモリセット(byte)
 		addr = gg_asc2int(argv[1]);
 		while(argc>2) {
 			data = gg_asc2int(argv[2]);
-			*(uint8_t *)(addr) = (uint8_t)data;
+			*(uint8_t *)((uintptr_t)addr) = (uint8_t)data;
 			addr += 1;
 			argc--;
 			argv++;
@@ -411,7 +413,7 @@ static int C_msw(int argc, char**argv)						// メモリセット(word)
 		addr = gg_asc2int(argv[1]);
 		while(argc>2) {
 			data = gg_asc2int(argv[2]);
-			*(uint16_t *)(addr) = (uint16_t)data;
+			*(uint16_t *)((uintptr_t)addr) = (uint16_t)data;
 			addr += 2;
 			argc--;
 			argv++;
@@ -429,7 +431,7 @@ static int C_msd(int argc, char**argv)						// メモリセット(dword)
 		addr = gg_asc2int(argv[1]);
 		while(argc>2) {
 			data = gg_asc2int(argv[2]);
-			*(uint32_t *)(addr) = (uint32_t)data;
+			*(uint32_t *)((uintptr_t)addr) = (uint32_t)data;
 			addr += 4;
 			argc--;
 			argv++;
@@ -451,7 +453,7 @@ static int C_mfb(int argc, char**argv)						// メモリフィル(byte)
 		alen = gg_asc2int(argv[2]);
 		data = gg_asc2int(argv[3]);
 		for (i=0; i<alen; i+=1) {
-			*(uint8_t *)(addr+i) = (uint8_t)data;
+			*(uint8_t *)((uintptr_t)(addr+i)) = (uint8_t)data;
 		}
 	} else {
 		gg_con_CmdHelp(argv[0]);
@@ -469,7 +471,7 @@ static int C_mfw(int argc, char**argv)						// メモリフィル(word)
 		alen = gg_asc2int(argv[2]);
 		data = gg_asc2int(argv[3]);
 		for (i=0; i<alen; i+=2) {
-			*(uint16_t *)(addr+i) = (uint16_t)data;
+			*(uint16_t *)((uintptr_t)(addr+i)) = (uint16_t)data;
 		}
 	} else {
 		gg_con_CmdHelp(argv[0]);
@@ -487,7 +489,7 @@ static int C_mfd(int argc, char**argv)						// メモリフィル(dword)
 		alen = gg_asc2int(argv[2]);
 		data = gg_asc2int(argv[3]);
 		for (i=0; i<alen; i+=4) {
-			*(uint32_t *)(addr+i) = (uint32_t)data;
+			*(uint32_t *)((uintptr_t)(addr+i)) = (uint32_t)data;
 		}
 	} else {
 		gg_con_CmdHelp(argv[0]);

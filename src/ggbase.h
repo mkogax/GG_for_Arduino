@@ -9,9 +9,14 @@
 #ifndef 	__GGBASE_H__
 #define 	__GGBASE_H__
 
+
+#include <Arduino.h>
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 
 //------------------
 //	HW定義(HW環境依存部)
@@ -20,12 +25,14 @@ extern "C" {
 //	整数型宣言
 #include "GG_HW_def.h"			// GGツール HW定義(HW環境依存部)
 
+
 //------------------
 //	GGツール
 //------------------
 #include "gg_uty.h"      	// UTY
 #include "gg_printf.h"      // PRINTF
 #include "gg_console.h"     // CONSOLE
+
 
 #ifdef __cplusplus
 }
