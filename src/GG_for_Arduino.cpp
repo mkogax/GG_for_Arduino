@@ -32,6 +32,7 @@ int gg_start(const char *title)		// Arduino用GGの処理開始
 	// コンソール用シリアルのボーレート設定(負数であればセットしない)
 	if (gg_con_baud>0) {
 		Serial.begin(gg_con_baud);		// ArduinoのSerialをセットアップ
+		while(!Serial)	;				// Serialの準備ができるまで待つ(USBシリアル対応)	2023.11.26 M.Kogan
 		gg_std_putc = std_putc;			// ArduinoのSerialへの出力ルーチン
 		gg_std_getc = std_getc;			// ArduinoのSerialからの入力ルーチン
 	}
